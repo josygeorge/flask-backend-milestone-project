@@ -24,7 +24,8 @@ mongo = PyMongo(app)
 @app.route('/list-words')
 def list_words():
     words = mongo.db.words.find()
-    return render_template('glossary.html', words=words)
+    return "render_template('glossary.html', words=words)"
+    # return render_template('glossary.html', words=words)
 
 
 if __name__ == "__main__":
