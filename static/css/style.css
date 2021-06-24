@@ -6,8 +6,8 @@ body {
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link {
     font-size: 1rem;
-    color: #ffc107;
-    background-image: linear-gradient(to right, #5588c6, #065ec9, #87b1e4);
+    color: #fffdc7;
+    background-image: linear-gradient(to right, #9c780b, #020a14, #2466b6);
     margin: 3px;
     padding: 1px 8px;
     border-radius: 5px;
@@ -30,7 +30,6 @@ body {
   header.masthead { 
     background-image: url('https://e3.365dm.com/18/10/2048x1152/skynews-dictionary-definition_4443820.jpg');
     background-repeat:repeat;
-    opacity: 1;
     max-height: 110vh;
     padding: 15px 2px;
   }
