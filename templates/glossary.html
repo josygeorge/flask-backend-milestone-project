@@ -2,6 +2,12 @@
 {% block content_to_render %}
     {% for word in words %}
         <div>{{word.name}}</div>
-        <div>{{word.name}}</div>
+        <div>
+            {% for definition in word.definitions %}
+            <ul>
+                <li>{{definition}}</li>
+            </ul>
+            {% endfor %}
+        </div>
     {% endfor %}
 {% endblock %}

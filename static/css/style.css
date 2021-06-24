@@ -18,18 +18,19 @@ body {
     color: #ffc107;
   }
   /* navbar collapse */
-  #mainNav .navbar-collapse.show > ul.navbar-nav {
-    text-align: center;
-  }
-  #mainNav .navbar-collapse.show > ul.navbar-nav > li > a {
-    margin: 1px;
+  #mainNav .navbar-collapse, #mainNav .navbar-collapse > ul, .nav-item {
+    width: fit-content;
+    text-align: right!important;
   }
   #mainNav .navbar-toggler > i.fas.fa-bars {
     font-size: 1.2rem;
   }
   
   /* HEADER IMAGE */
-  header.masthead {
-    background-image: linear-gradient(red, yellow, green);
-    max-height: 75vh;
+  header.masthead { 
+    background-image: url('https://e3.365dm.com/18/10/2048x1152/skynews-dictionary-definition_4443820.jpg');
+    background-repeat:repeat;
+    opacity: 1;
+    max-height: 110vh;
+    padding: 15px 2px;
   }
