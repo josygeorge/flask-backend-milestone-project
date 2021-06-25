@@ -1,44 +1,52 @@
 /* BASE */
 body {
-    letter-spacing: 0.2rem;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-      'Lucida Sans', Arial, sans-serif;
-  }
-  #mainNav a.navbar-brand{
-   font-size: 14px;
-  }
-  #mainNav a.navbar-brand:hover {
-    opacity: 0.8;
-    background-color: #494413!important;
-  }
-  #mainNav .navbar-nav > li.nav-item > a.nav-link {
-    font-size: 0.8rem;
-    color: #fffdc7;
-    background-image: linear-gradient(to right,#3b4903, #244266, #474605);
-    margin: 3px;
-    padding: 1px 8px;
-    border-radius: 5px;
-    border: 1px solid #fffdc7;
-  }
-  #mainNav .navbar-nav > li.nav-item > a.nav-link:hover {
-    opacity: 0.8;
-    border: 1px solid #ffc107;
-    color: #ffc107;
-  }
-  /* navbar collapse */
-  #mainNav .navbar-collapse, #mainNav .navbar-collapse > ul, .nav-item {
-    width: fit-content;
-    text-align: right!important;
-  }
-  #mainNav .navbar-toggler > i.fas.fa-bars {
-    font-size: 1.2rem;
-    color:#fffdc7;
-  }
-  
-  /* HEADER IMAGE */
-  header.masthead { 
-    background-image: url('https://e3.365dm.com/18/10/2048x1152/skynews-dictionary-definition_4443820.jpg');
-    background-repeat:repeat;
-    max-height: 110vh;
-    padding: 15px 2px;
-  }
+  letter-spacing: 0.2rem;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+}
+
+#mainNav a.navbar-brand {
+  font-size: 14px;
+}
+
+#mainNav a.navbar-brand:hover {
+  opacity: 0.8;
+  background-color: #494413 !important;
+}
+
+#mainNav .navbar-nav>li.nav-item>a.nav-link {
+  font-size: 0.8rem;
+  color: #fffdc7;
+  background-image: linear-gradient(to right, #3b4903, #244266, #474605);
+  margin: 3px;
+  padding: 1px 8px;
+  border-radius: 5px;
+  border: 1px solid #fffdc7;
+}
+
+#mainNav .navbar-nav>li.nav-item>a.nav-link:hover {
+  opacity: 0.8;
+  border: 1px solid #ffc107;
+  color: #ffc107;
+}
+
+/* navbar collapse */
+#mainNav .navbar-collapse,
+#mainNav .navbar-collapse>ul,
+.nav-item {
+  width: fit-content;
+  text-align: right !important;
+}
+
+#mainNav .navbar-toggler>i.fas.fa-bars {
+  font-size: 1.2rem;
+  color: #fffdc7;
+}
+
+/* HEADER IMAGE */
+header.masthead {
+  background-image: url('https://e3.365dm.com/18/10/2048x1152/skynews-dictionary-definition_4443820.jpg');
+  background-repeat: repeat;
+  max-height: 110vh;
+  padding: 15px 2px;
+}
