@@ -4,13 +4,21 @@ body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
       'Lucida Sans', Arial, sans-serif;
   }
+  #mainNav a.navbar-brand{
+   font-size: 14px;
+  }
+  #mainNav a.navbar-brand:hover {
+    opacity: 0.8;
+    background-color: #494413!important;
+  }
   #mainNav .navbar-nav > li.nav-item > a.nav-link {
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: #fffdc7;
-    background-image: linear-gradient(to right, #9c780b, #020a14, #2466b6);
+    background-image: linear-gradient(to right,#3b4903, #244266, #474605);
     margin: 3px;
     padding: 1px 8px;
     border-radius: 5px;
+    border: 1px solid #fffdc7;
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link:hover {
     opacity: 0.8;
@@ -24,6 +32,7 @@ body {
   }
   #mainNav .navbar-toggler > i.fas.fa-bars {
     font-size: 1.2rem;
+    color:#fffdc7;
   }
   
   /* HEADER IMAGE */

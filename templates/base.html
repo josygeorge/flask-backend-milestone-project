@@ -14,9 +14,10 @@
     <title>Glossary</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="{{url_for('list_words')}}">
+            <a class="navbar-brand text-white border border-white rounded-circle px-2" 
+                href="{{url_for('list_words')}}">
                 D-word
             </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -27,13 +28,13 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('list_words')}}">Home</a>
+                        <a class="nav-link text-uppercase" href="{{url_for('list_words')}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Sign In</a>
+                        <a class="nav-link text-uppercase" href="/">Sign In</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url_for('sign_up')}}">Sign Up</a>
+                        <a class="nav-link text-uppercase" href="{{url_for('sign_up')}}">Sign Up</a>
                     </li>
                 </ul>
             </div>
@@ -59,15 +60,81 @@
             </div>
         </div>
     </header>
+    <!-- Section for flash messages -->
+    <section>
+        <!-- flash messages -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="row flashes">
+            <h5 class="bg-dark text-align text-warning col-md-6 offset-m3">
+                {{ message }}
+            </h5>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </section>
     <!-- Main Content -->
-    <div class="container">
+    <div class="container mt-3">
 
         {% block content_to_render %}
         {% endblock %}
 
     </div>
-    
+    <hr class="bg-dark">
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md mx-auto">
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item">
+                            <a href="https://twitter.com/" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.facebook.com/" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://github.com/josygeorge/" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="copyright text-center text-muted font-italic">
+                        Full Stack Milestone Project using Flask, June 28 &copy; Josy George, 2021
+                    </div>
+                    <div class="text-center text-muted">
+                        <h6 class="copyright text-muted mt-3 mb-0 py-0">
+                            Full Stack Software Development [(Jan-Aug) 2021 Batch]
+                        </h6>
+                        <p class="copyright mb-0 mt-3 py-0 font-italic">
+                            Diploma Course by Canadian Business College,Toronto, CA
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for ('static', filename='js/script.js') }}"></script>
 </body>
 </html>
