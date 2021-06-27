@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content_to_render %}
+<div class="card bg-dark text-white">
+    <div class="card-header text-uppercase">Sign In</div>
+    <div class="card-body border border-white mx-3 mb-3">
+        <div class="row sign-up mt-3">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <form method="POST" action="{{url_for('sign_in')}}" class="needs-validation" novalidate>
+                    
+                    <!-- Username -->
+                    <div class="form-group border border-white p-2">
+                        <i class='fas fa-user-alt'></i>
+                        <label for="uname">Username</label>
+                        <input type="text" class="form-control" id="uname" 
+                            name="uname" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
+                    <!-- Password -->
+                    <div class="form-group border border-white p-2">
+                        <i class="fas fa-key"></i>
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="pwd" 
+                            name="password" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
+                    
+                    <!-- Submit -->
+                    <button type="submit" class="btn btn-light">
+                        Sign In &nbsp;<i class="fas fa-sign-in-alt"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div> 
+  </div>
+  
+{% endblock %}
