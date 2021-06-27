@@ -55,29 +55,33 @@ def sign_up():
     return render_template('sign_up.html')
 
 
-# Register user
-@app.route("/register", methods=["GET", "POST"])
-def register():
+@app.route("/sign-in", methods=["GET", "POST"])
+def sign_in():
     if request.method == "POST":
-        # check if the POST user exists in DB
+        # check for whether the user exists in the DB
         user_exists = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"username": request.form.get("uname").lower()})
 
         if user_exists:
-            flash("Username already exists")
-            return redirect(url_for("register"))
+            # ensure hashed password matches user input
+            if check_password_hash(
+                user_exists["password"], request.form.get("password")):
+                    session["user"] = request.form.get("uname").lower()
+                    flash("Welcome, {}".format(
+                        request.form.get("uname")))
+                    return redirect(url_for(
+                        'profile', username=session['user']))
+            else:
+                # invalid password match
+                flash("Incorrect Username and/or Password")
+                return redirect(url_for("sign_in"))
 
-        register = {
-            "username": request.form.get("username").lower(),
-            "password": generate_password_hash(request.form.get("password"))
-        }
-        mongo.db.users.insert_one(register)
+        else:
+            # username doesn't exist
+            flash("Incorrect Username and/or Password")
+            return redirect(url_for("sign_in"))
+    return render_template("sign_in.html")
 
-        # put the new user into 'session' cookie
-        session["user"] = request.form.get("username").lower()
-        flash("User Created!")
-        return redirect(url_for('profile', username=session['user']))
-    return render_template("register.html")
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
