@@ -50,3 +50,9 @@ header.masthead {
   max-height: 110vh;
   padding: 15px 2px;
 }
+.add_word_definition .hover-me > i:hover {
+  background-color: rgb(106, 106, 158);
+} 
+.add_word_definition .hover-me > i {
+  cursor: pointer;
+}

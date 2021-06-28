@@ -3,7 +3,7 @@
 <div class="card bg-dark text-white">
     <div class="card-header text-uppercase">Add Word and it's Definitions</div>
     <div class="card-body border border-white mx-3 mb-3">
-        <div class="row sign-up mt-3">
+        <div class="row add_word_definition mt-3">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <form method="POST" action="{{url_for('add_word')}}" class="needs-validation" novalidate>
                     <!-- Word Name -->
@@ -27,7 +27,7 @@
                         <div class="invalid-feedback">Please fill out this field.</div>
 
                         <!-- add definition field -->
-                        <div id="add-definition-textbox" class="text-right">
+                        <div id="add-definition-textbox" class="text-right hover-me">
                             <i class='fas fa-plus-square'></i>
                         </div>
                     </div>
@@ -42,8 +42,8 @@
                         <div class="valid-feedback">Valid.</div>
                         <div class="invalid-feedback">Please fill out this field.</div>
 
-                        <!-- add definition field -->
-                        <div id="add-synonym-textbox" class="text-right">
+                        <!-- add synonym field -->
+                        <div id="add-synonym-textbox" class="text-right hover-me">
                             <i class='fas fa-plus-square'></i>
                         </div>
                     </div>
@@ -58,8 +58,8 @@
                         <div class="valid-feedback">Valid.</div>
                         <div class="invalid-feedback">Please fill out this field.</div>
 
-                        <!-- add definition field -->
-                        <div id="add-antonym-textbox" class="text-right">
+                        <!-- add antonym field -->
+                        <div id="add-antonym-textbox" class="text-right hover-me">
                             <i class='fas fa-plus-square'></i>
                         </div>
                     </div>
