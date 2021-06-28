@@ -126,6 +126,15 @@ def update_profile(user_id):
     return render_template('update_profile.html', user=get_user)
 
 
+# Add Word and Definition
+@app.route("/add-word", methods=["GET", "POST"])
+def add_word():
+    if request.method == 'POST':
+        print(request.form.get("word_name"))
+        print(request.form.getlist("definitions[]"))
+    return render_template('add_word.html')
+
+
 # Logout
 @app.route("/sign-out")
 def sign_out():

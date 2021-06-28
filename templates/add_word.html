@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block content_to_render %}
+<div class="card bg-dark text-white">
+    <div class="card-header text-uppercase">Add Word and it's Definitions</div>
+    <div class="card-body border border-white mx-3 mb-3">
+        <div class="row sign-up mt-3">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <form method="POST" action="{{url_for('add_word')}}" class="needs-validation" novalidate>
+                    <!-- Word Name -->
+                    <div class="form-group border border-white p-2 word_name">
+                        <i class='fas fa-bookmark'></i>
+                        <label for="word_name">Word</label>
+                        <input type="text" class="form-control" id="word_name" 
+                            name="word_name" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
+
+                    <!-- Definitions [Array of inputs]-->
+                    <div class="form-group border border-white p-2 definitions">
+                        <i class='fas fa-book'></i>
+                        <label for="definitions">Definitions</label>
+
+                        <input type="text" class="form-control definition" id="definitions" 
+                            name="definitions[]" placeholder="Main definition" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+
+                        <!-- add definition field -->
+                        <div id="add-definition-textbox" class="text-right">
+                            <i class='fas fa-plus-square'></i>
+                        </div>
+                    </div>
+
+                    <!-- Synonyms [Array of inputs]-->
+                    <div class="form-group border border-white p-2 synonyms">
+                        <i class='fas fa-book'></i>
+                        <label for="synonyms">Synonyms</label>
+
+                        <input type="text" class="form-control synonym" id="synonyms" 
+                            name="synonyms[]" placeholder="Main synonym" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+
+                        <!-- add definition field -->
+                        <div id="add-synonym-textbox" class="text-right">
+                            <i class='fas fa-plus-square'></i>
+                        </div>
+                    </div>
+
+                    <!-- Antonyms [Array of inputs]-->
+                    <div class="form-group border border-white p-2 antonyms">
+                        <i class='fas fa-book'></i>
+                        <label for="synonyms">Antonyms</label>
+
+                        <input type="text" class="form-control antonym" id="antonyms" 
+                            name="antonyms[]" placeholder="Main antonym" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+
+                        <!-- add definition field -->
+                        <div id="add-antonym-textbox" class="text-right">
+                            <i class='fas fa-plus-square'></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Etymology -->
+                    <div class="form-group border border-white p-2 etymology">
+                        <i class='fas fa-bookmark'></i>
+                        <label for="etymology">Etymology</label>
+                        <input type="text" class="form-control" id="etymology" 
+                            name="etymology" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
+                    
+                   
+                    <!-- Submit -->
+                    <button type="submit" class="btn btn-light">
+                        Add Word Definition &nbsp;<i class="fas fa-plus"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div> 
+  </div>
+  
+{% endblock %}

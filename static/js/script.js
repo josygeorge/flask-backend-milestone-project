@@ -30,4 +30,36 @@ $(document).ready(function(){
             $(".new_password").css({"background": "#343a40"});
         }
     });
+    // Add Word Definitions Array of textbox
+    $('#add-definition-textbox').on('click', function (e) {
+        e.preventDefault();
+        $('<input type="text"/>')
+            .addClass('form-control mt-2 definition required')
+            .attr('name', 'definitions[]')
+            .attr('id', 'definitions')
+            .attr('placeholder', 'Other definition (optional)')
+            .insertBefore(this);
+    });
+    // Add Synonyms Array of textbox
+    $('#add-synonym-textbox').on('click', function (e) {
+        e.preventDefault();
+        $('<input type="text"/>')
+            .addClass('form-control mt-2 synonym required')
+            .attr('name', 'synonyms[]')
+            .attr('id', 'synonyms')
+            .attr('placeholder', 'Other synonym (optional)')
+            .insertBefore(this);
+    });
+    // Add Antonyms Array of textbox
+    $('#add-antonym-textbox').on('click', function (e) {
+        e.preventDefault();
+        $('<input type="text"/>')
+            .addClass('form-control mt-2 antonym required')
+            .attr('name', 'antonyms[]')
+            .attr('id', 'antonyms')
+            .attr('placeholder', 'Other antonym (optional)')
+            .insertBefore(this);
+    });
+    
+
 });
