@@ -23,6 +23,7 @@ $(document).ready(function(){
         // this will contain a reference to the checkbox   
         if (this.checked) {
             $(".new_password").removeAttr("disabled");
+            $(".new_password").attr("required", true);
             $(".new_password").css({"background": "#f8f9fa"});
         } else {
             $(".new_password").attr("disabled", "disabled"); 
