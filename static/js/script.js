@@ -13,4 +13,20 @@ $(document).ready(function(){
             form.classList.add('was-validated');
         }, false);
     });
+
+    // set interval for flash messages
+    $("#flashes").delay(4000).slideUp(300);
+
+    // checking the value for whether change password
+    $(".new_password").css({"background": "#343a40"});
+    $('.change_password').click(function() {
+        // this will contain a reference to the checkbox   
+        if (this.checked) {
+            $(".new_password").removeAttr("disabled");
+            $(".new_password").css({"background": "#f8f9fa"});
+        } else {
+            $(".new_password").attr("disabled", "disabled"); 
+            $(".new_password").css({"background": "#343a40"});
+        }
+    });
 });

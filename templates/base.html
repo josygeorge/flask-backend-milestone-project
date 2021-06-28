@@ -30,12 +30,21 @@
                     <li class="nav-item">
                         <a class="nav-link text-uppercase" href="{{url_for('list_words')}}">Home</a>
                     </li>
+                    {% if session.user %}
                     <li class="nav-item">
+                        <a class="nav-link text-uppercase" href="{{url_for('profile', username=session.user)}}">My Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase" href="{{url_for('sign_out')}}">Sign Out</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">                    
                         <a class="nav-link text-uppercase" href="{{url_for('sign_in')}}">Sign In</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-uppercase" href="{{url_for('sign_up')}}">Sign Up</a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -62,19 +71,24 @@
     </header>
     <!-- Section for flash messages -->
     <section>
-        <!-- flash messages -->
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        {% for message in messages %}
-        <div class="row flashes">
-            <h5 class="bg-dark text-align text-warning col-md-6 offset-m3">
-                {{ message }}
-            </h5>
+        <div id="flashes">
+            <!-- flash messages -->
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="row text-center">
+                <div class="col-md-6 col-md-offset-3">
+                    <h5 class="bg-dark text-warning py-2">
+                        {{ message }}
+                    </h5>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
         </div>
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
     </section>
+    
     <!-- Main Content -->
     <div class="container mt-3">
 

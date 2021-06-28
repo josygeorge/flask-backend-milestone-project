@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content_to_render %}
+<div class="card bg-dark text-white">
+    <div class="card-header text-uppercase">{{user.username}}'s Profile</div>
+    <div class="card-body border border-white mx-3 mb-3">
+        <div class="row user_profile mt-3">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span class="text-uppercase">First name:</span>
+                    </div>
+                    <div class="col-sm-6">
+                        <h4>{{user.firstname}}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span class="text-uppercase">Last name:</span>
+                    </div>
+                    <div class="col-sm-6">
+                        <h4>{{user.lastname}}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <span class="text-uppercase">Email ID:</span>
+                    </div>
+                    <div class="col-sm-6">
+                        <h4>{{user.email}}</h4>
+                    </div>
+                </div>
+                <hr class="bg-light">
+                <div class="row">
+                    {% if user.is_admin == "on" %}
+                    <div class="col-sm-6">
+                        <h6 class="font-italic">** Admin User</h6>
+                    </div>
+                    {% endif %}
+                    <div class="col-sm-6">
+                        <a 
+                            class="text-warning" 
+                            href="{{ url_for('update_profile', user_id=user._id) }}">
+                            Update <i class="fas fa-edit"></i> Profile
+                        </a>
+                    </div>
+                    
+                </div>
+                
+                
+            </div>
+        </div>
+    </div> 
+  </div>
+  
+{% endblock %}

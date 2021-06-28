@@ -3,7 +3,7 @@
 <div class="card bg-dark text-white">
     <div class="card-header text-uppercase">Sign In</div>
     <div class="card-body border border-white mx-3 mb-3">
-        <div class="row sign-up mt-3">
+        <div class="row sign-in mt-3">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <form method="POST" action="{{url_for('sign_in')}}" class="needs-validation" novalidate>
                     
@@ -31,6 +31,14 @@
                         Sign In &nbsp;<i class="fas fa-sign-in-alt"></i>
                     </button>
                 </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="text-center">
+                    Already have an account?&nbsp;
+                    <a href="{{url_for('sign_up')}}" class="text-primary">Sign Up</a>
+                </p>
             </div>
         </div>
     </div> 
