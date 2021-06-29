@@ -24,8 +24,24 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/list-words')
 def list_words():
-    words = mongo.db.words.find()
+    words = mongo.db.words.find().sort('name', 1)
     return render_template('glossary.html', words=words)
+
+
+# Search word
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    words = list(mongo.db.words.find({"$text": {"$search": query}}))
+    return render_template("glossary.html", words=words)
+
+
+# Word Details Page
+@app.route('/list-words-details/<word_id>')
+def list_words_details(word_id):
+    word_list = mongo.db.words.find_one(
+        {"_id": ObjectId(word_id)})
+    return render_template('word_details_page.html', word=word_list)
 
 
 # Sign Up
@@ -89,7 +105,6 @@ def profile(username):
     # grab the session user's username from db
     get_user = mongo.db.users.find_one(
         {"username": session["user"]})
-    print(username)
     if session['user']:
         return render_template("profile.html", user=get_user)
     return redirect(url_for('sign_in'))
@@ -114,7 +129,6 @@ def update_profile(user_id):
             "email": request.form.get("email"),
             "is_admin": request.form.get("is_admin")
         }
-        print(update_user_profile)
         mongo.db.users.update_one(
             {"_id": ObjectId(user_id)}, {"$set": update_user_profile})
         flash("User Profile Updated")
@@ -130,9 +144,44 @@ def update_profile(user_id):
 @app.route("/add-word", methods=["GET", "POST"])
 def add_word():
     if request.method == 'POST':
-        print(request.form.get("word_name"))
-        print(request.form.getlist("definitions[]"))
+        new_word_to_insert = {
+            "name": request.form.get("word_name").lower(),
+            "definitions": request.form.getlist("definitions[]"),
+            "synonyms": request.form.getlist("synonyms[]"),
+            "antonyms": request.form.getlist("antonyms[]"),
+            "etymology": request.form.get("etymology"),
+        }
+        mongo.db.words.insert_one(new_word_to_insert)
+        flash("New word and it's definitions created!")
+        return redirect(url_for('list_words'))
     return render_template('add_word.html')
+
+
+# Edit Word and Definition
+@app.route("/edit-word/<word_id>", methods=["GET", "POST"])
+def edit_word(word_id):
+    if request.method == 'POST':
+        word_to_update = {
+            "name": request.form.get("word_name").lower(),
+            "definitions": request.form.getlist("definitions[]"),
+            "synonyms": request.form.getlist("synonyms[]"),
+            "antonyms": request.form.getlist("antonyms[]"),
+            "etymology": request.form.get("etymology"),
+        }
+        mongo.db.words.update_one(
+            {"_id": ObjectId(word_id)}, {"$set": word_to_update})
+        flash("Word Definition Updated")
+        return redirect(url_for('list_words_details', word_id=word_id))
+    word = mongo.db.words.find_one({"_id": ObjectId(word_id)})
+    return render_template('edit_word.html', word=word)
+
+
+# Delete Word Definition
+@app.route("/delete-word/<word_id>")
+def delete_word(word_id):
+    mongo.db.words.remove({"_id": ObjectId(word_id)})
+    flash("Word and Definition Deleted!")
+    return redirect(url_for("list_words"))
 
 
 # Logout

@@ -1,13 +1,58 @@
 {% extends "base.html" %}
 {% block content_to_render %}
-    {% for word in words %}
-        <div>{{word.name}}</div>
-        <div>
-            {% for definition in word.definitions %}
-            <ul>
-                <li>{{definition}}</li>
-            </ul>
-            {% endfor %}
+
+<div class="">
+  <form method="POST" action="{{url_for('search')}}">
+    <div class="col-md-12">
+        <input class="search_input" type="text" name="query" placeholder="Search...">
+        <a href="{{ url_for('list_words') }}" class="bg-dark btn text-light">Reset</a>
+        <button type="submit" class="btn-primary btn text-shadow">
+            <i class="fas fa-search left"></i> Search
+        </button>
+    </div>
+  </form>
+</div>
+ <hr class="bg-dark">
+<div class="row text-center">
+  {% for word in words %}
+  <div class="col-sm-6 ">
+    <a href="{{url_for('list_words_details', word_id=word._id)}}" class="bg-warning text-dark btn">{{word.name}}</a>
+
+    <a class="list-word-remove-icon" data-toggle="modal" data-target="#{{word._id}}">
+      <i class="fas fa-trash"></i>
+    </a>
+
+    <!-- The Modal -->
+    <div class="modal" id="{{word._id}}">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Confirm</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            Are you sure to delete this word definition?
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <a href="{{url_for('delete_word', word_id=word._id)}}">
+              <button type="button" class="btn btn-primary">Delete</button>
+            </a>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+
         </div>
-    {% endfor %}
+      </div>
+    </div>
+    <hr>
+  </div>
+  {% endfor %}
+</div>
+
+
 {% endblock %}

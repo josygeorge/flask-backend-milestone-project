@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content_to_render %}
+<div class="card bg-dark text-white">
+    <div class="card-header text-uppercase text-center">
+        <h4>{{word.name}}</h4>
+    </div>
+    <div class="card-body border border-white mx-3 mb-3">
+        <div class="row user_profile mt-3">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <span class="text-uppercase">Definitions:</span>
+                    </div>
+                    <div class="col-sm-8">
+                        <ul>
+                            {% for definition in word.definitions %}
+                            <li>{{definition}}</li>
+                            {% endfor %}
+                        </ul>  
+                    </div>
+                </div>
+                <hr class="bg-warning">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <span class="text-uppercase">Synonyms:</span>
+                    </div>
+                    <div class="col-sm-8">
+                        <ul>
+                            {% for synonym in word.synonyms %}
+                            <li>{{synonym}}</li>
+                            {% endfor %}
+                        </ul>  
+                    </div>
+                </div>
+                <hr class="bg-warning">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <span class="text-uppercase">Antonyms:</span>
+                    </div>
+                    <div class="col-sm-8">
+                        <ul>
+                            {% for antonym in word.antonyms %}
+                            <li>{{antonym}}</li>
+                            {% endfor %}
+                        </ul>  
+                    </div>
+                </div>
+                <hr class="bg-warning">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <span class="text-uppercase">Etymology:</span>
+                    </div>
+                    <div class="col-sm-8">
+                        <p>{{word.etymology}}</p> 
+                    </div>
+                </div>
+                <hr class="bg-warning mb-5">
+                <!-- Edit button -->
+                <a href="{{url_for('edit_word', word_id=word._id)}}" class="text-warning border border-white px-3 py-1 rounded">
+                    Edit &nbsp;<i class="fas fa-edit"></i>
+                </a>
+            </div>
+        </div>
+    </div> 
+  </div>
+  
+{% endblock %}
