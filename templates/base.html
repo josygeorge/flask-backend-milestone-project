@@ -37,6 +37,7 @@
                     <li class="nav-item">
                         <a class="nav-link text-uppercase" href="{{url_for('profile', username=session.user)}}">My Profile</a>
                     </li>
+                    <li class="nav-item text-light mx-3"><i class="fas fa-user"></i>&nbsp;{{session.user}}</li>
                     <li class="nav-item">
                         <a class="nav-link text-uppercase" href="{{url_for('sign_out')}}">Sign Out</a>
                     </li>

@@ -12,11 +12,11 @@
                         <span class="text-uppercase">Definitions:</span>
                     </div>
                     <div class="col-sm-8">
-                        <ul>
+                        <ol>
                             {% for definition in word.definitions %}
                             <li>{{definition}}</li>
                             {% endfor %}
-                        </ul>  
+                        </ol>  
                     </div>
                 </div>
                 <hr class="bg-warning">
@@ -25,11 +25,11 @@
                         <span class="text-uppercase">Synonyms:</span>
                     </div>
                     <div class="col-sm-8">
-                        <ul>
+                        <ol>
                             {% for synonym in word.synonyms %}
                             <li>{{synonym}}</li>
                             {% endfor %}
-                        </ul>  
+                        </ol>  
                     </div>
                 </div>
                 <hr class="bg-warning">
@@ -38,11 +38,11 @@
                         <span class="text-uppercase">Antonyms:</span>
                     </div>
                     <div class="col-sm-8">
-                        <ul>
+                        <ol>
                             {% for antonym in word.antonyms %}
                             <li>{{antonym}}</li>
                             {% endfor %}
-                        </ul>  
+                        </ol>  
                     </div>
                 </div>
                 <hr class="bg-warning">
@@ -54,11 +54,13 @@
                         <p>{{word.etymology}}</p> 
                     </div>
                 </div>
+                {% if session.user %}
                 <hr class="bg-warning mb-5">
                 <!-- Edit button -->
                 <a href="{{url_for('edit_word', word_id=word._id)}}" class="text-warning border border-white px-3 py-1 rounded">
                     Edit &nbsp;<i class="fas fa-edit"></i>
                 </a>
+                {% endif %}
             </div>
         </div>
     </div> 

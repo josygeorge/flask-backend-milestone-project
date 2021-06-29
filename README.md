@@ -15,7 +15,7 @@
     <br />
     <br />
     <h3 align="center">
-        <a href="https://josygeorge.github.io/interactive-fe-dev-project/">View Demo</a>
+        <a href="https://flask-backend-milestone-proj.herokuapp.com/">View Demo</a>
     </h3>
   </p>
 </p>
@@ -50,7 +50,7 @@
 
 ## About The Project
 
-[Live Project URL](https://josygeorge.github.io/interactive-fe-dev-project/)
+[Live Project URL](https://flask-backend-milestone-proj.herokuapp.com/)
 
 - User can sign up in to the app to add new word definitions for the web dictionary app.
 - User can be admin or a normal user.

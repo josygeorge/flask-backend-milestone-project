@@ -15,9 +15,13 @@
  <hr class="bg-dark">
 <div class="row text-center">
   {% for word in words %}
+  
   <div class="col-sm-6 ">
-    <a href="{{url_for('list_words_details', word_id=word._id)}}" class="bg-warning text-dark btn">{{word.name}}</a>
+    <a href="{{url_for('list_words_details', word_id=word._id)}}" class="bg-warning text-dark btn">
+      <i class="fas fa-info-circle"></i> {{word.name}}
+    </a>
 
+    {% if session.user %}
     <a class="list-word-remove-icon" data-toggle="modal" data-target="#{{word._id}}">
       <i class="fas fa-trash"></i>
     </a>
@@ -43,12 +47,14 @@
             <a href="{{url_for('delete_word', word_id=word._id)}}">
               <button type="button" class="btn btn-primary">Delete</button>
             </a>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-info" data-dismiss="modal">No, Cancel</button>
           </div>
 
         </div>
       </div>
     </div>
+    {% endif %}
+
     <hr>
   </div>
   {% endfor %}
