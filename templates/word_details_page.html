@@ -54,8 +54,18 @@
                         <p>{{word.etymology}}</p> 
                     </div>
                 </div>
-                {% if session.user %}
-                <hr class="bg-warning mb-5">
+                <hr class="bg-warning">
+                <div class="row">
+                    <div class="col-sm text-right">
+                        <span class="font-italic">Created By: {{word.word_created_by}}</span>
+                    </div>
+                </div>
+                <hr class="mb-3">
+                <a href="{{url_for('list_words')}}" class="text-info border border-white px-3 py-1 mr-5 rounded">
+                    <i class="fas fa-angle-double-left"></i>&nbsp;Go Back
+                </a>
+                {% if session.user|lower == word.word_created_by or session.is_admin|lower == "on" %}
+                
                 <!-- Edit button -->
                 <a href="{{url_for('edit_word', word_id=word._id)}}" class="text-warning border border-white px-3 py-1 rounded">
                     Edit &nbsp;<i class="fas fa-edit"></i>

@@ -66,6 +66,7 @@ def sign_up():
         mongo.db.users.insert_one(user_sign_up)
         # put the new user into 'session' cookie
         session["user"] = request.form.get("uname").lower()
+        session["is_admin"] = request.form.get("is_admin")
         flash("User Created!")
         return redirect(url_for('profile', username=session['user']))
     return render_template('sign_up.html')
@@ -83,6 +84,7 @@ def sign_in():
             if check_password_hash(
                 user_exists["password"], request.form.get("password")):
                     session["user"] = request.form.get("uname").lower()
+                    session["is_admin"] = user_exists["is_admin"]
                     flash("Welcome, {}".format(
                         request.form.get("uname")))
                     return redirect(url_for(
@@ -150,6 +152,7 @@ def add_word():
             "synonyms": request.form.getlist("synonyms[]"),
             "antonyms": request.form.getlist("antonyms[]"),
             "etymology": request.form.get("etymology"),
+            "word_created_by": session["user"]
         }
         mongo.db.words.insert_one(new_word_to_insert)
         flash("New word and it's definitions created!")
@@ -189,6 +192,7 @@ def delete_word(word_id):
 def sign_out():
     # remove user from session cookie
     flash("You have been signed out...")
+    session.pop("is_admin")
     session.pop("user")
     return redirect(url_for("list_words"))
 

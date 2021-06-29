@@ -51,7 +51,7 @@ header.masthead {
   padding: 15px 2px;
 }
 .add_word_definition .hover-me > i:hover, .edit_word_definition .hover-me > i:hover, .list-word-remove-icon > i:hover {
-  color: rgb(250, 173, 58);
+  color: rgb(199, 133, 34);
 } 
 .add_word_definition .hover-me > i, .list-word-remove-icon {
   cursor: pointer;
