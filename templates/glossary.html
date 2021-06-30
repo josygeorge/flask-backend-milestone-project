@@ -4,18 +4,20 @@
 <div class="">
   <form method="POST" action="{{url_for('search')}}">
     <div class="col-md-12">
-        <input class="search_input" type="text" name="query" placeholder="Search...">
-        <a href="{{ url_for('list_words') }}" class="bg-dark btn text-light">Reset</a>
-        <button type="submit" class="btn-primary btn text-shadow">
-            <i class="fas fa-search left"></i> Search
-        </button>
+      <input class="search_input" type="text" name="query" placeholder="Search...">
+      <a href="{{ url_for('list_words') }}" class="bg-dark btn text-light">Reset</a>
+      <button type="submit" class="btn-primary btn text-shadow">
+        <i class="fas fa-search left"></i> Search
+      </button>
     </div>
   </form>
 </div>
 <hr class="bg-dark">
+
+{% if words.count() > 0 %}
 <div class="row text-center">
   {% for word in words %}
-  
+
   <div class="col-sm-6 ">
     <a href="{{url_for('list_words_details', word_id=word._id)}}" class="bg-warning text-dark btn">
       <i class="fas fa-info-circle"></i> {{word.name}}
@@ -59,6 +61,8 @@
   </div>
   {% endfor %}
 </div>
-
+{% else %}
+<h2 class="my-5 text-uppercase">No results found</h2>
+{% endif %}
 
 {% endblock %}

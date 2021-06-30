@@ -32,7 +32,7 @@ def list_words():
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
-    words = list(mongo.db.words.find({"$text": {"$search": query}}))
+    words = mongo.db.words.find({"$text": {"$search": query}})
     return render_template("glossary.html", words=words)
 
 
