@@ -145,19 +145,22 @@ def update_profile(user_id):
 # Add Word and Definition
 @app.route("/add-word", methods=["GET", "POST"])
 def add_word():
-    if request.method == 'POST':
-        new_word_to_insert = {
-            "name": request.form.get("word_name").lower(),
-            "definitions": request.form.getlist("definitions[]"),
-            "synonyms": request.form.getlist("synonyms[]"),
-            "antonyms": request.form.getlist("antonyms[]"),
-            "etymology": request.form.get("etymology"),
-            "word_created_by": session["user"]
-        }
-        mongo.db.words.insert_one(new_word_to_insert)
-        flash("New word and it's definitions created!")
-        return redirect(url_for('list_words'))
-    return render_template('add_word.html')
+    if session["user"]:
+        if request.method == 'POST':
+            new_word_to_insert = {
+                "name": request.form.get("word_name").lower(),
+                "definitions": request.form.getlist("definitions[]"),
+                "synonyms": request.form.getlist("synonyms[]"),
+                "antonyms": request.form.getlist("antonyms[]"),
+                "etymology": request.form.get("etymology"),
+                "word_created_by": session["user"]
+            }
+            mongo.db.words.insert_one(new_word_to_insert)
+            flash("New word and it's definitions created!")
+            return redirect(url_for('list_words'))
+        return render_template('add_word.html')
+    else:
+        return render_template('glossary.html')
 
 
 # Edit Word and Definition
