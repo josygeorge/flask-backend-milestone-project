@@ -66,6 +66,11 @@ This section should list any major frameworks that you built your project using.
 - [fontawesome](https://fontawesome.com/)
 - [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS)
 - [HTML5](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5)
+- [Python 3](https://docs.python.org/3/tutorial/)
+- [Flask Micro Framework](https://flask.palletsprojects.com/en/2.0.x/)
+- [MongoDB](https://www.mongodb.com/cloud/atlas)
+- [Heroku](https://www.heroku.com)
+- [App live on Heroku](https://flask-backend-milestone-proj.herokuapp.com/)
 
 <!-- GETTING STARTED -->
 

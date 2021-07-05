@@ -34,27 +34,27 @@ $(document).ready(function(){
     /* ----- Remove icon is shown, if no. of input textbox are more than 1 ----- */
     // Edit definition --
     if($('#edit_word_definition input.definition').length > 1) {
-        $('<div id="remove-definition-textbox" class="text-right hover-me">Remove&nbsp;<i class="fas fa-minus-square"></i></div>')
-            .insertAfter('#add-definition-textbox');
+        $('<div id="icon-remove-definition-textbox" class="text-right hover-me">Remove&nbsp;<i class="fas fa-minus-square"></i></div>')
+            .insertAfter('#icon-add-definition-textbox');
     }
     // Edit synonym --
     if($('#edit_word_definition input.synonym').length > 1) {
-        $('<div id="remove-synonym-textbox" class="text-right hover-me">Remove&nbsp;<i class="fas fa-minus-square"></i></div>')
-            .insertAfter('#add-synonym-textbox');
+        $('<div id="icon-remove-synonym-textbox" class="text-right hover-me">Remove&nbsp;<i class="fas fa-minus-square"></i></div>')
+            .insertAfter('#icon-add-synonym-textbox');
     }
     // Edit antonym --
     if($('#edit_word_definition input.antonym').length > 1) {
-        $('<div id="remove-antonym-textbox" class="text-right hover-me">Remove&nbsp;<i class="fas fa-minus-square"></i></div>')
-            .insertAfter('#add-antonym-textbox');
+        $('<div id="icon-remove-antonym-textbox" class="text-right hover-me">Remove&nbsp;<i class="fas fa-minus-square"></i></div>')
+            .insertAfter('#icon-add-antonym-textbox');
     }
 
     /* -----------------------------------
     Add Word Definitions Array of textbox 
     ------------------------------------ */
-    $('#add-definition-textbox').on('click', function (e) {
+    $('#icon-add-definition-textbox').on('click', function (e) {
         e.preventDefault();
         // remove the multi occurence of remove on each add definition
-        $(document).find('#remove-definition-textbox').remove();
+        $(document).find('#icon-remove-definition-textbox').remove();
 
         $('<input type="text"/>')
             .addClass('form-control mt-2 definition required')
@@ -63,30 +63,27 @@ $(document).ready(function(){
             .attr('required', true)
             .attr('placeholder', 'Other definition')
             .insertBefore(this);
-        $('<div id="remove-definition-textbox" class="text-right hover-me">Remove&nbsp;<i class="fas fa-minus-square"></i></div>')
-            .insertAfter('#add-definition-textbox');
+        $('<div id="icon-remove-definition-textbox" class="text-right hover-me">Remove&nbsp;<i class="fas fa-minus-square"></i></div>')
+            .insertAfter('#icon-add-definition-textbox');
             
     });
     // Remove Word Definitions Array of textbox excluding 1st input:textbox
-    $(document).on("click", '#remove-definition-textbox', function () {
+    $(document).on("click", '#icon-remove-definition-textbox', function (e) {
+        e.preventDefault();
         if($('input.definition').length > 1) {
             $("div.definitions").find("input:last").remove();
         }
-        // On DOMSubtreeModified remove the icon if the input textbox is at first
-        $('body').on('DOMSubtreeModified', 'div.definitions', function(){
-            if($('input.definition').length < 2) {
-                $(document).find('#remove-definition-textbox').remove();
-            }
-        });
-            
+        if($('input.definition').length <= 1) {
+            $(this).remove();
+        }
     });
     /* --------------------------
     Add Synonyms Array of textbox 
     ----------------------------- */
-    $('#add-synonym-textbox').on('click', function (e) {
+    $('#icon-add-synonym-textbox').on('click', function (e) {
         e.preventDefault();
         // remove the multi occurence of remove on each add synonym
-        $(document).find('#remove-synonym-textbox').remove();
+        $(document).find('#icon-remove-synonym-textbox').remove();
         $('<input type="text"/>')
             .addClass('form-control mt-2 synonym')
             .attr('name', 'synonyms[]')
@@ -94,29 +91,27 @@ $(document).ready(function(){
             .attr('required', true)
             .attr('placeholder', 'Other synonym')
             .insertBefore(this);
-        $('<div id="remove-synonym-textbox" class="text-right hover-me">Remove&nbsp;<i class="fas fa-minus-square"></i></div>')
-            .insertAfter('#add-synonym-textbox');
+        $('<div id="icon-remove-synonym-textbox" class="text-right hover-me">Remove&nbsp;<i class="fas fa-minus-square"></i></div>')
+            .insertAfter('#icon-add-synonym-textbox');
     });
     // Remove Synonyms Array of textbox excluding 1st input:textbox
-    $(document).on("click", '#remove-synonym-textbox', function () {
+    $(document).on("click", '#icon-remove-synonym-textbox', function (e) {
+        e.preventDefault();
         if($('input.synonym').length > 1) {
             $("div.synonyms").find("input:last").remove();
         }
-        // On DOMSubtreeModified remove the icon if the input textbox is at first
-        $('body').on('DOMSubtreeModified', 'div.synonyms', function(){
-            if($('input.synonym').length < 2) {
-                $(document).find('#remove-synonym-textbox').remove();
-            }
-        });
+        if($('input.synonym').length <= 1) {
+            $(this).remove();
+        }
     });
 
     /* ---------------------------
     Add Antonyms Array of textbox 
     ---------------------------- */
-    $('#add-antonym-textbox').on('click', function (e) {
+    $('#icon-add-antonym-textbox').on('click', function (e) {
         e.preventDefault();
         // remove the multi occurence of remove on each add antonym
-        $(document).find('#remove-antonym-textbox').remove();
+        $(document).find('#icon-remove-antonym-textbox').remove();
 
         $('<input type="text"/>')
             .addClass('form-control mt-2 antonym required')
@@ -125,25 +120,33 @@ $(document).ready(function(){
             .attr('required', true)
             .attr('placeholder', 'Other antonym')
             .insertBefore(this);
-        $('<div id="remove-antonym-textbox" class="text-right hover-me">Remove&nbsp;<i class="fas fa-minus-square"></i></div>')
-            .insertAfter('#add-antonym-textbox');
+        $('<div id="icon-remove-antonym-textbox" class="text-right hover-me">Remove&nbsp;<i class="fas fa-minus-square"></i></div>')
+            .insertAfter('#icon-add-antonym-textbox');
     });
     // Remove Antonyms Array of textbox excluding 1st input:textbox
-    $(document).on("click", '#remove-antonym-textbox', function () {
+    $(document).on("click", '#icon-remove-antonym-textbox', function (e) {
+        e.preventDefault();
         if($('input.antonym').length > 1) {
             $("div.antonyms").find("input:last").remove();
         }
-        // On DOMSubtreeModified remove the icon if the input textbox is at first
-        $('body').on('DOMSubtreeModified', 'div.antonyms', function(){
-            if($('input.antonym').length < 2) {
-                $(document).find('#remove-antonym-textbox').remove();
-            }
-        });
+        if($('input.antonym').length <= 1) {
+            $(this).remove();
+        }
+
+        //On DOMSubtreeModified remove the icon if the input textbox is at first
+        /* $('body').on('DOMSubtreeModified', 'div.antonyms', function(){
         // $(document).bind('DOMSubtreeModified', function () {
-        //     if($('input.antonym').length < 2) {
-        //         $(document).find('#remove-antonym-textbox').remove();
-        //     }
-        //  }); 
+            if($('input.antonym').length <= 1) {
+                //$(document).find('#icon-remove-antonym-textbox').remove();
+                $(this).remove();
+            }
+        }); */
+
+        /* $(document).bind('DOMSubtreeModified', function () {
+            if($('input.antonym').length < 2) {
+                $(document).find('#icon-remove-antonym-textbox').remove();
+            }
+         });  */
     });
 
 });
