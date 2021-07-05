@@ -140,10 +140,10 @@ def update_profile(user_id):
             flash("User Profile Updated")
             return redirect(url_for(
                         'profile', username=session['user']))
-            # grab the session user's username from db for profile update
-            get_user = mongo.db.users.find_one(
+        # grab the session user's username from db for profile update
+        get_user = mongo.db.users.find_one(
                 {"_id": ObjectId(user_id)})
-            return render_template('update_profile.html', user=get_user)
+        return render_template('update_profile.html', user=get_user)
     else:
         return render_template('sign_in.html')
 
