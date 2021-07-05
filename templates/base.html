@@ -34,16 +34,16 @@
                     <li class="nav-item">
                         <a class="nav-link text-uppercase" href="{{url_for('add_word')}}">New Word</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link text-uppercase" href="{{url_for('profile', username=session.user)}}">My Profile</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item text-light mx-3">
                         {% if session.is_admin == "on" %}
                         <i class="fas fa-user-graduate"></i>
                         {% else %}
                         <i class="fas fa-user-alt"></i>
                         {% endif %}
-                        <a href="{{url_for('profile', username=session.user)}}">
+                        <a class="text-light" href="{{url_for('profile', username=session.user)}}">
                             {{session.user}}
                         </a>
                     </li>
