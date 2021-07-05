@@ -115,31 +115,34 @@ def profile(username):
 # update user profile
 @app.route("/update-profile/<user_id>", methods=["GET", "POST"])
 def update_profile(user_id):
-    if request.method == 'POST':
-        print(request.form.get("is_admin"))
-        # password assign based on checking whether the user has made a password change
-        if request.form.get("change_password") == "on":
-            get_password = generate_password_hash(
-                request.form.get("password"))
-        else:
-            get_password = mongo.db.users.find_one(
-                {"_id": ObjectId(user_id)})["password"]
-        update_user_profile = {
-            "password": get_password,
-            "firstname": request.form.get("fname"),
-            "lastname": request.form.get("lname"),
-            "email": request.form.get("email"),
-            "is_admin": request.form.get("is_admin")
-        }
-        mongo.db.users.update_one(
-            {"_id": ObjectId(user_id)}, {"$set": update_user_profile})
-        flash("User Profile Updated")
-        return redirect(url_for(
-                    'profile', username=session['user']))
-        # grab the session user's username from db for profile update
-    get_user = mongo.db.users.find_one(
-            {"_id": ObjectId(user_id)})
-    return render_template('update_profile.html', user=get_user)
+    if session["user"]:
+        if request.method == 'POST':
+            print(request.form.get("is_admin"))
+            # password assign based on checking whether the user has made a password change
+            if request.form.get("change_password") == "on":
+                get_password = generate_password_hash(
+                    request.form.get("password"))
+            else:
+                get_password = mongo.db.users.find_one(
+                    {"_id": ObjectId(user_id)})["password"]
+            update_user_profile = {
+                "password": get_password,
+                "firstname": request.form.get("fname"),
+                "lastname": request.form.get("lname"),
+                "email": request.form.get("email"),
+                "is_admin": request.form.get("is_admin")
+            }
+            mongo.db.users.update_one(
+                {"_id": ObjectId(user_id)}, {"$set": update_user_profile})
+            flash("User Profile Updated")
+            return redirect(url_for(
+                        'profile', username=session['user']))
+            # grab the session user's username from db for profile update
+            get_user = mongo.db.users.find_one(
+                {"_id": ObjectId(user_id)})
+            return render_template('update_profile.html', user=get_user)
+    else:
+        return render_template('sign_in.html')
 
 
 # Add Word and Definition
@@ -166,28 +169,34 @@ def add_word():
 # Edit Word and Definition
 @app.route("/edit-word/<word_id>", methods=["GET", "POST"])
 def edit_word(word_id):
-    if request.method == 'POST':
-        word_to_update = {
-            "name": request.form.get("word_name").lower(),
-            "definitions": request.form.getlist("definitions[]"),
-            "synonyms": request.form.getlist("synonyms[]"),
-            "antonyms": request.form.getlist("antonyms[]"),
-            "etymology": request.form.get("etymology"),
-        }
-        mongo.db.words.update_one(
-            {"_id": ObjectId(word_id)}, {"$set": word_to_update})
-        flash("Word Definition Updated")
-        return redirect(url_for('list_words_details', word_id=word_id))
-    word = mongo.db.words.find_one({"_id": ObjectId(word_id)})
-    return render_template('edit_word.html', word=word)
+    if session["user"]:
+        if request.method == 'POST':
+            word_to_update = {
+                "name": request.form.get("word_name").lower(),
+                "definitions": request.form.getlist("definitions[]"),
+                "synonyms": request.form.getlist("synonyms[]"),
+                "antonyms": request.form.getlist("antonyms[]"),
+                "etymology": request.form.get("etymology"),
+            }
+            mongo.db.words.update_one(
+                {"_id": ObjectId(word_id)}, {"$set": word_to_update})
+            flash("Word Definition Updated")
+            return redirect(url_for('list_words_details', word_id=word_id))
+        word = mongo.db.words.find_one({"_id": ObjectId(word_id)})
+        return render_template('edit_word.html', word=word)
+    else:
+        return render_template('glossary.html')
 
 
 # Delete Word Definition
 @app.route("/delete-word/<word_id>")
 def delete_word(word_id):
-    mongo.db.words.remove({"_id": ObjectId(word_id)})
-    flash("Word and Definition Deleted!")
-    return redirect(url_for("list_words"))
+    if session["user"]:
+        mongo.db.words.remove({"_id": ObjectId(word_id)})
+        flash("Word and Definition Deleted!")
+        return redirect(url_for("list_words"))
+    else:
+        return render_template('glossary.html')
 
 
 # Logout
