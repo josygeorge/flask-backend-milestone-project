@@ -41,7 +41,10 @@ def search():
 def list_words_details(word_id):
     word_list = mongo.db.words.find_one(
         {"_id": ObjectId(word_id)})
-    return render_template('word_details_page.html', word=word_list)
+    if word_list["_id"] == ObjectId(word_id):    
+        return render_template('word_details_page.html', word=word_list)
+    else:
+        return render_template('glossary.html')
 
 
 # Sign Up
