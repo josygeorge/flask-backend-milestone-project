@@ -43,7 +43,7 @@
                         {% else %}
                         <i class="fas fa-user-alt"></i>
                         {% endif %}
-                        <a class="nav-link text-uppercase" href="{{url_for('profile', username=session.user)}}">
+                        <a href="{{url_for('profile', username=session.user)}}">
                             {{session.user}}
                         </a>
                     </li>
